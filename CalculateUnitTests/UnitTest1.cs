@@ -8,7 +8,7 @@ namespace CalculateUnitTests
     [TestClass]
     public class CalculateTests
     {
-        /*[TestMethod]
+        [TestMethod]
         public void CorrentValueAdd()
         {
             // Change these lines for each test
@@ -17,7 +17,7 @@ namespace CalculateUnitTests
             var expected = input1 + input2;
             var testString = $"{input1} + {input2} should be equal to {input1 + input2}";
 
-            
+
 
             Add();
 
@@ -68,6 +68,6 @@ namespace CalculateUnitTests
 
             result.Should().Be(expected, because: testString);
         }
-        */
+
     }
 }
