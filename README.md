@@ -13,3 +13,5 @@ Follow the template in the View and the ViewModels to finish this exercise.
 This exercise is purposefully more open ended than the last exercises. For documentation on the prism library,
 
 https://prismlibrary.com/docs/commanding.html
+
+Before starting this exercise, talk to your trainer.
