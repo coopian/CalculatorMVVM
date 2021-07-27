@@ -13,6 +13,9 @@ namespace CalculatorMVVM.ViewModels
             set {
                 SetProperty(ref _Num1, value);
                 AddCommand.RaiseCanExecuteChanged();
+                SubCommand.RaiseCanExecuteChanged();
+                MultiCommand.RaiseCanExecuteChanged();
+                DivideCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -25,6 +28,9 @@ namespace CalculatorMVVM.ViewModels
             {
                 SetProperty(ref _Num2, value);
                 AddCommand.RaiseCanExecuteChanged();
+                SubCommand.RaiseCanExecuteChanged();
+                MultiCommand.RaiseCanExecuteChanged();
+                DivideCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -44,6 +50,10 @@ namespace CalculatorMVVM.ViewModels
         public MainWindowViewModel()
         {
             AddCommand = new DelegateCommand(Add, CanCalculate);
+            SubCommand = new DelegateCommand(Sub, CanCalculate);
+            MultiCommand = new DelegateCommand(Multi, CanCalculate);
+            //DivideCommand = new DelegateCommand(Divide, CanCalculate);
+            DivideCommand = new DelegateCommand(Divide, CanDivide);
         }
 
         private void Add()
@@ -53,14 +63,17 @@ namespace CalculatorMVVM.ViewModels
 
         private void Sub()
         {
+            Result = (_dblNum1 - _dblNum2).ToString();
         }
 
         private void Multi()
         {
+            Result = (_dblNum1 * _dblNum2).ToString();
         }
 
         private void Divide()
         {
+            Result = (_dblNum1 / _dblNum2).ToString();
         }
 
         public bool CanCalculate()
@@ -77,7 +90,21 @@ namespace CalculatorMVVM.ViewModels
 
         public bool CanDivide()
         {
-            return default;
+            var problem = !double.TryParse(Num1, out _dblNum1) || !double.TryParse(Num2, out _dblNum2);
+
+            if (problem)
+            {
+                return false;
+            }
+            else if (_dblNum2 == 0.00)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+           
         }
     }
 }
